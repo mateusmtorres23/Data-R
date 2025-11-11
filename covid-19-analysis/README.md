@@ -40,12 +40,14 @@ The data shows several key insights about the evolution of COVID-19 in Brazil:
 
     The peak of cases occurred when sanitary measures were relaxed during the beggining of 2022, indicating that reduced social distancing and mask usage directly contributed to the spike in infections.
 
-    Interestingly, the peak of deaths did not coincide with the peak of cases.
-    This happened because vaccinations began to ramp up during the same period, making infections less fatal even as the virus continued to spread.
+    Interestingly, the peak of deaths did(Aug 2021 - nov 2021) not coincide with the peak of cases.
+    This happened because during the peak of the deaths was the period people started disrespecting the sanitary measures and the vaccine was not yet well spread. 
+    Vaccinations began to ramp up during the same period the peak of cases occured, making infections less fatal even as the virus continued to spread.
 
-    The increase in vaccination coverage significantly reduced the lethality of COVID-19, though not its transmission.
+    The data reveals a strong correlation between the rise in vaccination coverage and the subsequent decline of the pandemic. 
+    Vaccination peaks closely aligning with the reduction in cases and most importantly deaths.
 
-    Despite the overall decline in deaths, COVID-19 has not disappeared. There are still new cases being reported, emphasizing the need for continued monitoring and prevention.
+    Despite the overall decline in deaths, COVID-19 has not disappeared. There are still new cases being reported n 2025, emphasizing the need for continued monitoring and prevention wiht vaccines.
 
 ## 🧩 Tools Used
 R, tidyverse, ggplot2, lubridate
