@@ -1,0 +1,167 @@
+---
+title: "COVID-19 Data Analysis: Brazil"
+author: "Mateus Torres"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output: html_document
+---
+
+##  Project Overview
+
+This report analyzes the evolution of COVID-19 in **Brazil** using data from the *Our World in Data* (OWID) dataset.  
+The goal is to explore trends in cases, deaths, and vaccinations over time and to understand how vaccination and public health measures influenced the trajectory of the pandemic.
+
+---
+
+## Libraries and Data Preparation
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+# Data preparation
+
+covid_data <- read_csv("Data/covid_19_dataset.csv")
+
+brazil_data <- covid_data |> filter(country == "Brazil")
+
+brazil_data_clean <- brazil_data |>
+  select(date, total_cases, total_deaths, people_vaccinated)
+```
+
+## Data Transformation
+
+I create additional variables to analyze weekly trends and growth patterns.
+
+```{r}
+# Weekly cases
+weekly_cases_data <- brazil_data_clean |>
+arrange(date) |>
+mutate(
+new_cases = total_cases - lag(total_cases, default=0),
+week_start = floor_date(date, unit = "week", week_start = 1)
+) |>
+group_by(week_start) |>
+summarise(total_weekly_cases = sum(new_cases, na.rm=TRUE))
+
+# Weekly deaths
+
+weekly_death_data <- brazil_data_clean |>
+arrange(date) |>
+mutate(
+new_deaths = total_deaths - lag(total_deaths, default = 0),
+week_start = floor_date(date, unit = 'week', week_start = 1)
+) |>
+group_by(week_start) |>
+summarise(total_weekly_deaths = sum(new_deaths, na.rm = TRUE))
+
+# Weekly vaccinations
+
+weekly_vacc_data <- brazil_data_clean |>
+arrange(date) |>
+mutate(
+new_vaccs = people_vaccinated - lag(people_vaccinated, default = 0),
+week_start = floor_date(date, unit = 'week', week_start = 1)
+) |>
+group_by(week_start) |>
+summarise(total_weekly_vaccs = sum(new_vaccs, na.rm = TRUE))
+```
+
+## Visualizations
+
+Total growth and weekly cases
+
+```{r}
+# Cases
+cases_plot <- ggplot(brazil_data_clean, aes(x = date, y = total_cases)) +
+geom_line(color = "blue", linewidth = 1) +
+labs(
+title = "Growth of COVID-19 Cases in Brazil",
+x = "Date",
+y = "Total Cases"
+) +
+theme_minimal()+
+scale_y_continuous(labels = scales::label_number())
+
+weekly_cases_plot <- ggplot(weekly_cases_data, aes(x = week_start, y = total_weekly_cases)) +
+geom_col(fill = "steelblue") +
+labs(
+title = "Total Weekly COVID-19 Cases in Brazil",
+x = "Week",
+y = "Weekly Cases"
+) +
+theme_minimal() +
+scale_y_continuous(labels = scales::label_number())
+
+cases_plot
+weekly_cases_plot
+
+# Deaths
+
+death_plot <- ggplot(brazil_data_clean, aes(x = date, y = total_deaths)) +
+geom_line(color = "red", linewidth = 1) +
+labs(
+title = "Growth of COVID-19 Deaths in Brazil",
+x = "Date",
+y = "Total Deaths"
+) +
+theme_minimal() +
+scale_y_continuous(labels = scales::label_number())
+
+weekly_death_plot <- ggplot(weekly_death_data, aes(x = week_start, y = total_weekly_deaths)) +
+geom_col(fill = 'darkred') +
+labs(
+title = 'Total Weekly COVID-19 Deaths in Brazil',
+x = 'Week',
+y = 'Weekly Deaths'
+) +
+theme_minimal() +
+scale_y_continuous(labels = scales::label_number())
+
+death_plot
+weekly_death_plot
+
+# Vaccinations
+
+vaccination_plot <- ggplot(brazil_data_clean, aes(x = date, y = people_vaccinated)) +
+geom_line(color = 'green', linewidth = 1) +
+labs(
+title = "Growth of COVID-19 Vaccinations in Brazil",
+x = 'Date',
+y = 'People Vaccinated'
+) +
+theme_minimal()
+
+weekly_vaccs_plot <- ggplot(weekly_vacc_data, aes(x = week_start, y = total_weekly_vaccs)) +
+geom_col(fill = 'forestgreen') +
+labs(
+title = 'Total Weekly COVID-19 Vaccinations in Brazil',
+x = 'Week',
+y = 'Weekly Vaccinations'
+) +
+theme_minimal()
+
+vaccination_plot
+weekly_vaccs_plot
+```
+
+## Results and Discussion
+
+The data shows several key insights about the evolution of COVID-19 in Brazil:
+
+    The peak of cases occurred when sanitary measures were relaxed, indicating that reduced social distancing and mask usage directly contributed to the spike in infections.
+
+    Interestingly, the peak of deaths did not coincide with the peak of cases.
+    This happened because vaccinations began to ramp up during the same period, making infections less fatal even as the virus continued to spread.
+
+    The increase in vaccination coverage significantly reduced the lethality of COVID-19, though not its transmission.
+
+    Despite the overall decline in deaths, COVID-19 has not disappeared. There are still new cases being reported, emphasizing the need for continued monitoring and prevention.
+
+## Conclusion
+
+Vaccination played a crucial role in reducing the fatality of COVID-19 in Brazil.
+The divergence between peaks of cases and deaths reflects the protective effect of vaccines, even as preventive measures were lifted.
+The data clearly shows that while infections persisted, the severity and mortality decreased notably after mass vaccination campaigns began.
+
+This analysis demonstrates how open data and simple R tools can provide valuable insights into the dynamics of public health crises.
