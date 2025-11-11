@@ -47,3 +47,5 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+covid-19-analysis/Data/covid_19_dataset.csv
+.RDataTmp1
