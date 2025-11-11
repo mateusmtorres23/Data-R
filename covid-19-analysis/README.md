@@ -54,4 +54,14 @@ R, tidyverse, ggplot2, lubridate
 
 ## Plots
 
-(You can paste all screenshots together here for quick visual reference)
+<img width="273" height="245" alt="image" src="https://github.com/user-attachments/assets/b49cd5f9-85a6-4777-ad2a-4e33bfca863a" />
+
+<img width="270" height="239" alt="image" src="https://github.com/user-attachments/assets/872a76dc-5afe-454e-9a30-eb92441d1bc6" />
+
+<img width="271" height="247" alt="image" src="https://github.com/user-attachments/assets/a407b55e-477c-4c5f-aa79-dbd8c4a43cc2" />
+
+<img width="269" height="243" alt="image" src="https://github.com/user-attachments/assets/870b387d-15ed-41a9-a045-c793f56b63e0" />
+
+<img width="267" height="243" alt="image" src="https://github.com/user-attachments/assets/1d648590-cba3-4a31-994e-8bb28807b03a" />
+
+<img width="267" height="242" alt="image" src="https://github.com/user-attachments/assets/a4bf4d9f-3215-4f31-8bef-8fbb93cbb595" />
