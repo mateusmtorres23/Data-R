@@ -52,7 +52,7 @@ Build a **simple and functional dashboard** to visualize spending patterns and a
 ## 🌍 Live Version
 
 The dashboard is available online at:
-👉 mat-mtorres.shinyapps.io/Finance-Dashboard
+👉 [mat-mtorres.shinyapps.io/Finance-Dashboard](https://mat-mtorres.shinyapps.io/Finance-Dashboard)
 
 ---
 
