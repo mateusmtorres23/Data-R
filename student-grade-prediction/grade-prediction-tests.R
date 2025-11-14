@@ -136,17 +136,54 @@ port_metrics_rf <- port_results_rf %>%
 print(port_metrics_rf)
 
 # Final comparison
-print("--- Math LR Metrics ---")
 print(math_metrics_lr)
 
-print("--- Math RF Metrics ---")
 print(math_metrics_rf)
 
-print("--- Portuguese LR Metrics ---")
 print(port_metrics_lr)
 
-print("--- Portuguese RF Metrics ---")
 print(port_metrics_rf)
+
+# Model interpretation and plotting
+
+math_lr_coeffs <- math_fit_lr %>%
+  extract_fit_parsnip() %>%
+  tidy()
+
+top_lr_coeffs <- math_lr_coeffs %>%
+  filter(term != "(Intercept)") %>%
+  mutate(abs_estimate = abs(estimate)) %>%
+  slice_max(n = 15, order_by = abs_estimate)
+
+print(top_lr_coeffs)
+
+plot_lr_coeffs <- ggplot(top_lr_coeffs, aes(x = estimate, y = fct_reorder(term, estimate), fill = estimate > 0)) +
+  geom_col(show.legend =  FALSE) +
+  labs(
+    title = "Top 15 predictors of math performance",
+    subtitle = "Coefficients from linear regression model",
+    x = "Coefficient estimate (Impact on G3_mat)",
+    Y = "Predictor term"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c(`TRUE` = "#0072b2", `FALSE` = "#D55E00"))
+print(plot_lr_coeffs)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
