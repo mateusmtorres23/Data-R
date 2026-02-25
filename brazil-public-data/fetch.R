@@ -2,6 +2,7 @@ library(sf)
 library(geobr)
 library(tidyverse)
 library(sidrar)
+library(ipeadatar)
 
 #geobr data
 file_path_map <- "Data/raw/brazil-map.rds"
@@ -12,8 +13,22 @@ if (file.exists(file_path_map)) {
   
 } else {
   
-  brazil_map <- geobr::read_state(showProgress = FALSE, year = 2020)
+  brazil_map <- read_state(showProgress = FALSE, year = 2020)
   write_rds(brazil_map, file_path_map)
+  
+}
+
+#ipea data
+file_path_hdi <- "Data/raw/hdi.rds"
+
+if (file.exists(file_path_hdi)) {
+  
+  hdi_data <- read_rds(file_path_hdi)
+  
+} else {
+  
+  hdi_data <- ipeadata(code = "IDHM")
+  write_rds(hdi_data, file_path_hdi)
   
 }
 

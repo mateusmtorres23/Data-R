@@ -1,0 +1,28 @@
+code_state,name_state,abbrev_state,name_region,ideb_score,idh_score,taxa_alfabetizacao,renda_per_capita,populacao
+11,Rondônia,RO,Norte,5.5,0.7,93.55,1523,1581196
+12,Acre,AC,Norte,5.7,0.71,87.87,1074,830018
+13,Amazônas,AM,Norte,5.6,0.7,93.06,1166,3941613
+14,Roraima,RR,Norte,5.4,0.699,93.08,1428,636707
+15,Pará,PA,Norte,4.8,0.69,91.24,1273,8120131
+16,Amapá,AP,Norte,4.8,0.688,93.53,1492,733759
+17,Tocantins,TO,Norte,5.4,0.731,90.94,1544,1511460
+21,Maranhão,MA,Nordeste,5.0999999999999996,0.676,84.95,969,6776699
+22,Piauí,PI,Nordeste,5.7,0.69,82.77,1327,3271199
+23,Ceará,CE,Nordeste,6.5,0.734,85.88,1140,8794957
+24,Rio Grande Do Norte,RN,Nordeste,4.8,0.728,86.14,1350,3302729
+25,Paraíba,PB,Nordeste,5.3,0.698,84.04,1323,3974687
+26,Pernambuco,PE,Nordeste,5.3,0.719,86.59,1099,9058931
+27,Alagoas,AL,Nordeste,5.7,0.684,82.34,1102,3127683
+28,Sergipe,SE,Nordeste,4.9000000000000004,0.702,86.19,1198,2210004
+29,Bahia,BA,Nordeste,4.9000000000000004,0.691,87.4,1129,14141626
+31,Minas Gerais,MG,Sudeste,6.1,0.774,94.15,1863,20539989
+32,Espírito Santo,ES,Sudeste,6.1,0.771,94.38,1883,3833712
+33,Rio De Janeiro,RJ,Sudeste,5.5,0.762,96.72,2305,16055174
+35,São Paulo,SP,Sudeste,6.2,0.806,96.89,2414,44411238
+41,Paraná,PR,Sul,6.5,0.769,95.69,2046,11444380
+42,Santa Catarina,SC,Sul,6.2,0.792,97.33,2224,7610361
+43,Rio Grande Do Sul,RS,Sul,5.8,0.771,96.89,2255,10882965
+50,Mato Grosso Do Sul,MS,Centro Oeste,5.3,0.742,94.61,1990,2757013
+51,Mato Grosso,MT,Centro Oeste,5.8,0.736,94.19,1948,3658649
+52,Goiás,GO,Centro Oeste,6.1,0.737,94.51,1973,7056495
+53,Distrito Federal,DF,Centro Oeste,5.9,0.814,97.23,3215,2817381
