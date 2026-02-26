@@ -13,21 +13,6 @@ path_raw_inc <- "Data/raw/income.rds"
 file_path_hdi <- "Data/raw/hdi.rds"
 
 path_raw_states_IDEB <- "Data/raw/states_IDEB_2023.xlsx"
-path_raw_muni_ef_IDEB <- "Data/raw/muni_ef_IDEB_2023.xlsx"
-path_raw_muni_em_IDEB <- "Data/raw/muni_em_IDEB_2023.xlsx"
-
-#cleaning IDEB municipal data
-
-raw_ideb_muni_ef_data <- read_excel(path_raw_muni_ef_IDEB, skip = 9) %>%
-  clean_names() %>%
-  mutate(cycle = "fundamental")
-raw_ideb_muni_em_data <- read_excel(path_raw_muni_em_IDEB, skip = 9) %>%
-  clean_names() %>%
-  mutate(cycle = "ensino_medio")
-  
-ideb_muni_data <- bind_rows(raw_ideb_muni_ef_data, raw_ideb_muni_em_data)
-
-write_rds(ideb_muni_data, "Data/processed/ideb_municipalities.rds")
 
 # cleaning data to add the IBGE state codes to the IDEB data
 
