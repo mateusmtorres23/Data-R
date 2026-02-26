@@ -136,7 +136,5 @@ brazil_socioeconomic_education_states_data <- ideb_states_data %>%
 
 write_rds(brazil_socioeconomic_education_states_data, "Data/processed/brazil_socioeconomic_education_states_data.rds")
 
-write_csv(brazil_socioeconomic_education_states_data, "Data/processed/brazil_socioeconomic_education_states_data.csv")
-
 
 
