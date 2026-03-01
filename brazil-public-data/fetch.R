@@ -5,7 +5,7 @@ library(sidrar)
 library(ipeadatar)
 
 #geobr data
-file_path_map <- "Data/raw/brazil-map.rds"
+file_path_map <- "Data/processed/brazil-map.rds"
 
 if (file.exists(file_path_map)) {
   

@@ -5,7 +5,7 @@ library(stringi)
 library(sf)
 
 #file paths
-path_raw_map <- "Data/raw/brazil-map.rds"
+path_raw_map <- "Data/processed/brazil-map.rds"
 
 path_raw_pop <- "Data/raw/population.rds"
 path_raw_lit <- "Data/raw/literacy.rds"
