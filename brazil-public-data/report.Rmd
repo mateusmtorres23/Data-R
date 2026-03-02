@@ -1,0 +1,79 @@
+---
+title: "Educação e Desigualdade Regional no Brasil"
+author: "Análise de Dados Públicos"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(ggplot2)
+library(knitr)
+
+source("analisys.R")
+source("visualization.R")
+```
+
+### 1. Introdução
+
+Este documento consolida a análise estatística e geoespacial dos indicadores educacionais brasileiros, cruzando dados do IBGE, INEP e PNUD. O objetivo estrutural é mapear as disparidades regionais relativas à alfabetização, IDEB, Renda per capita e Índice de Desenvolvimento Humano.
+
+### 2. Síntese Regional
+
+A tabela a seguir apresenta as métricas descritivas agregadas por macrorregião geoeconômica.
+
+```{r}
+kable(regional_summary, digits = 2, caption = "Estatísticas Descritivas por Região")
+```
+
+### 3. Correlações Estruturais
+
+A matriz de correlação de Pearson demonstra a magnitude e direção das relações lineares entre os vetores de educação e desenvolvimento socioeconômico.
+
+```{r}
+kable(correlation_matrix, digits = 2, caption = "Matriz de Correlação (Pearson)")
+```
+
+### 4. Análise de Desempenho
+
+Extremos do IDEB
+
+```{r}
+kable(top_5_ideb, caption = "Top 5 Estados - IDEB")
+kable(bottom_5_ideb, caption = "Bottom 5 Estados - IDEB")
+```
+
+Extremos da Taxa de Alfabetização
+
+```{r}
+kable(top_5_literacy, caption = "Top 5 Estados - Alfabetização")
+kable(bottom_5_literacy, caption = "Bottom 5 Estados - Alfabetização")
+```
+
+### 5. Representações Visuais
+
+O gráfico abaixo quantifica os líderes nacionais no Índice de Desenvolvimento da Educação Básica.
+
+```{r}
+plot_top_ideb
+```
+
+A dispersão a seguir cruza a renda per capita contra o score do IDEB, incluindo o ajuste linear para inferência visual da correlação.
+
+```{r}
+plot_correlation
+```
+
+### 6. Mapeamento Geoespacial Interativo
+
+A representação cartográfica permite a inspeção granular do IDEB projetada sobre as unidades federativas do Brasil
+
+```{r}
+interactive_map
+```

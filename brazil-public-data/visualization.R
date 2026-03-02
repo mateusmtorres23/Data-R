@@ -26,6 +26,8 @@ map_data <- brazil_map %>%
   left_join(data, by = "abbrev_state", suffix = c("", "_numeric")) %>%
   st_transform(crs = 4326)
 
+ideb_palette <- colorNumeric(palette = "YlGnBu", domain = map_data$ideb_score)
+
 interactive_map <- leaflet(map_data) %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
   addPolygons(
