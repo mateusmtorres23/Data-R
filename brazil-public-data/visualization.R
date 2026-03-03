@@ -2,6 +2,7 @@ library(tidyverse)
 library(sf)
 library(ggplot2)
 library(leaflet)
+library(plotly)
 
 load("Data/processed/analytical_results.RData")
 
@@ -16,7 +17,7 @@ plot_top_ideb <- ggplot(top_5_ideb, aes(x = reorder(name_state, ideb_score), y =
   theme_minimal() +
   labs(title = "Top 5 States by IDEB Score", x = "State", y = "IDEB Score")
 
-plot_correlation <- ggplot(data, aes(x = renda_per_capita, y = ideb_score)) +
+plot_correlation <- ggplot(data, aes(x = renda_per_capita, y = ideb_score, text = paste("Estado:", name_state))) + # Adicionei 'text' aqui
   geom_point(alpha = 0.6, color = "darkblue") +
   geom_smooth(method = "lm", color = "red", se = FALSE) +
   theme_minimal() +
@@ -40,10 +41,25 @@ interactive_map <- leaflet(map_data) %>%
   ) %>%
   addLegend(pal = ideb_palette, values = ~ideb_score, title = "IDEB", position = "bottomright")
 
+interactive_correlation <- ggplotly(plot_correlation, tooltip = c("x", "y", "text"))
 
+plot_boxplot_region <- ggplot(data, aes(x = name_region, y = ideb_score, fill = name_region)) +
+  geom_boxplot(alpha = 0.7, outlier.colour = "red") +
+  labs(title = "Dispersão do IDEB por Região", x = "Região", y = "Score IDEB") +
+  theme_minimal() +
+  theme(legend.position = "none")
 
+plot_map_literacy <- ggplot(map_data) +
+  geom_sf(aes(fill = taxa_alfabetizacao), color = "white", size = 0.1) +
+  scale_fill_viridis_c(option = "magma", direction = -1, name = "Alfabetização (%)") +
+  labs(title = "Taxa de Alfabetização por Estado") +
+  theme_void()
 
-
+plot_map_income <- ggplot(map_data) +
+  geom_sf(aes(fill = renda_per_capita), color = "white", size = 0.1) +
+  scale_fill_distiller(palette = "Greens", direction = 1, name = "Renda (R$)") +
+  labs(title = "Renda Domiciliar Per Capita") +
+  theme_void()
 
 
 

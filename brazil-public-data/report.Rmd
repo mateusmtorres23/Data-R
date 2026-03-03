@@ -15,6 +15,7 @@ library(sf)
 library(leaflet)
 library(ggplot2)
 library(knitr)
+library(plotly)
 
 source("analisys.R")
 source("visualization.R")
@@ -31,6 +32,14 @@ A tabela a seguir apresenta as métricas descritivas agregadas por macrorregião
 ```{r}
 kable(regional_summary, digits = 2, caption = "Estatísticas Descritivas por Região")
 ```
+
+#### Distribuição de Desempenho (Boxplot)
+
+```{r}
+ggplotly(plot_boxplot_region)
+```
+
+A dispersão abaixo ilustra a variabilidade das notas dentro de cada região.
 
 ### 3. Correlações Estruturais
 
@@ -61,13 +70,13 @@ kable(bottom_5_literacy, caption = "Bottom 5 Estados - Alfabetização")
 O gráfico abaixo quantifica os líderes nacionais no Índice de Desenvolvimento da Educação Básica.
 
 ```{r}
-plot_top_ideb
+ggplotly(plot_top_ideb)
 ```
 
 A dispersão a seguir cruza a renda per capita contra o score do IDEB, incluindo o ajuste linear para inferência visual da correlação.
 
 ```{r}
-plot_correlation
+ggplotly(plot_correlation)
 ```
 
 ### 6. Mapeamento Geoespacial Interativo
@@ -76,4 +85,13 @@ A representação cartográfica permite a inspeção granular do IDEB projetada 
 
 ```{r}
 interactive_map
+```
+
+#### Outros Indicadores Socioeconômicos
+
+Mapas comparativos de Alfabetização e Renda.
+
+```{r}
+plot_map_literacy
+plot_map_income
 ```
